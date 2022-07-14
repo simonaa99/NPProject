@@ -5,7 +5,7 @@
  */
 package rs.ac.bg.fon.np_project.server.so.userCategory;
 
-import repository.impl.RepositoryUserCategory;
+import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryUserCategory;
 import rs.ac.bg.fon.np_project.server.so.AbstractSO;
 
 /**

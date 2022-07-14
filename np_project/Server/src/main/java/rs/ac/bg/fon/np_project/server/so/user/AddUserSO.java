@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package so.user;
+package rs.ac.bg.fon.np_project.server.so.user;
 
 import rs.ac.bg.fon.np_project.commonlibrary.model.User;
 import rs.ac.bg.fon.np_project.commonlibrary.model.UserCard;
 import rs.ac.bg.fon.np_project.commonlibrary.model.UserCategory;
-import repository.impl.RepositoryUser;
-import repository.impl.RepositoryUserCard;
-import repository.impl.RepositoryUserCategory;
+import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryUser;
+import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryUserCard;
+import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryUserCategory;
 import rs.ac.bg.fon.np_project.server.so.AbstractSO;
 
 /**

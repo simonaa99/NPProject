@@ -7,7 +7,7 @@ package rs.ac.bg.fon.np_project.server.so.user;
 import java.util.ArrayList;
 import java.util.List;
 import rs.ac.bg.fon.np_project.commonlibrary.model.User;
-import repository.impl.RepositoryUser;
+import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryUser;
 import rs.ac.bg.fon.np_project.server.so.AbstractSO;
 
 /**

@@ -7,7 +7,7 @@ package rs.ac.bg.fon.np_project.server.so.worker;
 
 import rs.ac.bg.fon.np_project.server.broker.DatabaseBroker;
 import rs.ac.bg.fon.np_project.commonlibrary.model.Worker;
-import repository.impl.RepositoryWorker;
+import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryWorker;
 import rs.ac.bg.fon.np_project.server.so.AbstractSO;
 
 /**

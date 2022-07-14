@@ -6,7 +6,7 @@
 package rs.ac.bg.fon.np_project.server.db;
 
 import java.io.IOException;
-import repository.Repository;
+import rs.ac.bg.fon.np_project.server.repository.Repository;
 import java.sql.SQLException;
 
 

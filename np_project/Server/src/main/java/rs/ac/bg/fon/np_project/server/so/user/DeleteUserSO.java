@@ -6,8 +6,8 @@
 package rs.ac.bg.fon.np_project.server.so.user;
 
 import rs.ac.bg.fon.np_project.commonlibrary.model.User;
-import repository.impl.RepositoryUser;
-import repository.impl.RepositoryUserCard;
+import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryUser;
+import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryUserCard;
 import rs.ac.bg.fon.np_project.server.so.AbstractSO;
 
 /**
