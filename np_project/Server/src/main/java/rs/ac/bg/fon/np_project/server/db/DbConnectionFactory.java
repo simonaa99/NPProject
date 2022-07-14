@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import constants.ServerConstants;
+import rs.ac.bg.fon.np_project.server.constants.ServerConstants;
 
 
 /**
