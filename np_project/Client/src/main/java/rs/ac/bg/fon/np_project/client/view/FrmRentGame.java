@@ -256,7 +256,7 @@ public class FrmRentGame extends javax.swing.JDialog {
             if (games.size() == 0) {
                 throw new Exception("Sistem ne moze da pronadje igre po zadatoj vrednosti!");
             } else {
-                JOptionPane.showMessageDialog(this, "Sistem je pronašao igre po zadatoj vrednosti.");
+                JOptionPane.showMessageDialog(this, "Sistem je pronasao igre po zadatoj vrednosti.");
             }
             ((TableModelGame) tblGames.getModel()).setIgre(games);
         } catch (ValidationException ex) {

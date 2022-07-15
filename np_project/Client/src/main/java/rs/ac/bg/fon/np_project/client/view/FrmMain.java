@@ -88,7 +88,7 @@ public class FrmMain extends javax.swing.JFrame {
     }
     
     private void stop() {
-        JOptionPane.showMessageDialog(this, "Konekcija sa serverom je prekinuta. Molimo Vas, pokušajte kasnije.", "Prekid konekcije", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Konekcija sa serverom je prekinuta. Molimo Vas, pokusajte kasnije.", "Prekid konekcije", JOptionPane.ERROR_MESSAGE);
         this.dispose();
 
         System.exit(0);

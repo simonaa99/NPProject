@@ -40,7 +40,7 @@ CREATE TABLE `clan` (
 
 insert  into `clan`(`id`,`ime`,`prezime`,`brojTelefona`,`adresa`,`kategorijaId`,`clanskaKartaId`) values 
 (1,'Aleksa','Glišović','0658794258','Jurija Gagarina 67, Beograd',2,2),
-(2,'MIna','Kostic','0659487231','Vojvode Supljikca, Beograd',3,3),
+(2,'Mina','Kostic','0659487231','Vojvode Supljikca, Beograd',3,3),
 (3,'Stefan','Kostic','063218945','Bulever Despota Stefana 4, Beograd',4,4),
 (4,'Marina','Milic','0695487319','Bulevar Zorana Djidjica 50, Beograd',2,5),
 (5,'Aleksandar','Marojevic','0654892379','Vojvode Stepe 10, Beograd',4,6);
@@ -169,7 +169,7 @@ CREATE TABLE `kategorijaclanova` (
 
 insert  into `kategorijaclanova`(`id`,`naziv`,`popustNaClanarinu`) values 
 (1,'Gost',0),
-(2,'Rednovan',10),
+(2,'Redovan',10),
 (3,'Takmmičar',20),
 (4,'Šampion meseca',30);
 
@@ -186,8 +186,8 @@ CREATE TABLE `kategorijaigara` (
 /*Data for the table `kategorijaigara` */
 
 insert  into `kategorijaigara`(`id`,`naziv`) values 
-(1,'Porodične_igre'),
-(2,'Kartične_igre'),
+(1,'Porodicne_igre'),
+(2,'Karticne_igre'),
 (3,'Igre_na_srpskom'),
 (4,'Party_games'),
 (5,'Igre_za_dvoje'),
@@ -206,14 +206,15 @@ CREATE TABLE `radnik` (
   `prijavljen` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`radnikID`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `radnik` */
 
 insert  into `radnik`(`radnikID`,`username`,`password`,`ime`,`prezime`,`prijavljen`) values 
-(1,'simi','simi123456','Simona','Baosic',NULL),
+(1,'simi','simi123456','Simona','Baosic',0),
 (2,'ludidzoni','ludidzoni01','Nikola','Milanov',NULL),
-(4,'dora','dora12345','Teodora','Milic',NULL);
+(4,'dora','dora12345','Teodora','Milic',NULL),
+(5,'wa2309','vaske1234','Vasilije','Mijuskovic',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

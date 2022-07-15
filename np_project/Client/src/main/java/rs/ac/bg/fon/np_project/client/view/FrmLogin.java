@@ -116,7 +116,7 @@ public class FrmLogin extends javax.swing.JFrame {
             String password = String.valueOf(txtPassword.getPassword());
             currentUser = ControllerUI.getInstance().login(user, password);
             CurrentUser.setCurrentUser(currentUser);
-            JOptionPane.showMessageDialog(this, "Dobrodošli, " + currentUser.getUsername());
+            JOptionPane.showMessageDialog(this, "Dobrodosli, " + currentUser.getUsername());
             this.dispose();
             frmMain=new FrmMain(currentUser);
             frmMain.setVisible(true);
@@ -154,7 +154,7 @@ public class FrmLogin extends javax.swing.JFrame {
         } else {
             currentUser = (Worker) response.getResult();
             CurrentUser.setCurrentUser(currentUser);
-            JOptionPane.showMessageDialog(this, "Dobrodošli, " + currentUser.getUsername());
+            JOptionPane.showMessageDialog(this, "Dobrodosli, " + currentUser.getUsername());
             this.dispose();
             FrmMain frm = new FrmMain(currentUser);
 

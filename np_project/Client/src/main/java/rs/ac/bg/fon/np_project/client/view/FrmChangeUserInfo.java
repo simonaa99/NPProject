@@ -329,16 +329,16 @@ public class FrmChangeUserInfo extends javax.swing.JDialog {
         if (selectedRow != -1) {
             Rent rent = ((TableModelUserRents) tblIznajmljeneIgre.getModel()).getRent(selectedRow);
             if (rent.getReturnDate() != null) {
-                JOptionPane.showMessageDialog(this, "Igra je prethodno razdužena.");
+                JOptionPane.showMessageDialog(this, "Igra je prethodno razduzena.");
             } else {
                 try {
                     ControllerUI.getInstance().restoreGame(rent);
-                    JOptionPane.showMessageDialog(this, "Uspešno ste razdužili igru.");
+                    JOptionPane.showMessageDialog(this, "Uspesno ste razduzili igru.");
                     ((TableModelUserRents) tblIznajmljeneIgre.getModel()).getRent(selectedRow).setReturnDate(LocalDate.now());
                     ((TableModelUserRents) tblIznajmljeneIgre.getModel()).fireTableDataChanged();
 
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "Neuspešno razduživanje igre.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Neuspesno razduzivanje igre.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
 

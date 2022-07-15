@@ -44,7 +44,7 @@ public class FrmAddUser extends javax.swing.JDialog {
             FrameCenter.CenteredFrame(this);
             // JOptionPane.showMessageDialog(this, "Sistem je kreirao novog clana!");
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira nogo clana!", "Greska", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Sistem ne moze da kreira novog clana!", "Greska", JOptionPane.ERROR_MESSAGE);
         }
     }
 

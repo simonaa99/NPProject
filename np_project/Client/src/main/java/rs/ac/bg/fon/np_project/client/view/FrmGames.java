@@ -245,7 +245,7 @@ public class FrmGames extends javax.swing.JDialog {
             if (igre.size() == 0) {
                 JOptionPane.showMessageDialog(this, "Sistem ne moze da pronadje igre po zadatoj vrednosti!", "Greska", JOptionPane.ERROR_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Sistem je pronašao igre po zadatoj vrednosti!");
+                JOptionPane.showMessageDialog(this, "Sistem je pronasao igre po zadatoj vrednosti!");
             }
 
             ((TableModelGame) tblIgre.getModel()).setIgre(igre);
