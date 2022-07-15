@@ -81,6 +81,11 @@ public class Publisher extends AbstractDO implements Serializable{
         this.publisherName = publisherName;
     }
 
+    /**
+     * Vraca ime izdavaca.
+     *
+     * @return String koji predstavlja ime izdavaca.
+     */
     @Override
     public String toString() {
         return publisherName;   }
