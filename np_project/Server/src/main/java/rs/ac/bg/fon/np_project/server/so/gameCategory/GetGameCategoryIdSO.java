@@ -9,12 +9,25 @@ import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryGameCategory;
 import rs.ac.bg.fon.np_project.server.so.AbstractSO;
 
 /**
- *
+ * Predstavlja klasu u kojoj se izvrsavaju metode za vracanje id kategorije drustvenih
+ * igara iz baze. Sadrzi implementaciju metoda precondition i executeOperation iz
+ * nadklase AbstractSO, konstruktor i atribut repositoryGameCategory koja je tipa
+ * klase koje se nalaze na serverskoj strani..
+ * 
  * @author Simona
+ * @version 1.0.0
  */
 public class GetGameCategoryIdSO extends AbstractSO{
+	
+	/**
+	 * Predstavlja atribut koji je tipa klase RepositoryGameCategory koja uzima, dodaje, azurira i
+	 * i brise kategorije drustvenih igara iz baze. 
+	 */
     RepositoryGameCategory repositoryGameCategory;
 
+    /**
+     * Konstruktor koji inicijalizuje atribut repositoryGameCategory.
+     */
     public GetGameCategoryIdSO() {
         repositoryGameCategory=new RepositoryGameCategory();
     }
