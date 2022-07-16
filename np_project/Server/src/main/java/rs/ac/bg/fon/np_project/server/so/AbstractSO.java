@@ -22,7 +22,7 @@ public abstract class AbstractSO {
      * executeOperation i commitTransaction i vraca taj objekat (u slucaju da ne dodje do izuzetka). 
      * Metoda baca exception ako dodje do greske i izvrsava metodu rollbackTransaction.
      * 
-     * @param Object parametar koji treba da se obradi u metodi
+     * @param param tipa Object koji treba da se obradi u metodi
      * @return obradjen objekat kao Object
      * @throws java.lang.Exception ako dodje do greske prilikom izvrsavanja
      * */
@@ -44,7 +44,7 @@ public abstract class AbstractSO {
      * Apstraktna metoda koja proverava da li objekat ispunjava odredjene uslove
      * kako bi mogao biti obradjen.
      * 
-     * @param Object parametar za koji treba proveriti da li ispunjava uslove
+     * @param param tipa Object za koji treba proveriti da li ispunjava uslove
      * @throws java.lang.Exception ako dodje do greske prilikom izvrsavanja i vraca
      * poruku "Poslati objekat je neodgovarajuceg tipa!"
      * */
@@ -54,8 +54,8 @@ public abstract class AbstractSO {
     /**
      * Apstraktna metoda koja izvrsava odredjenu operaciju nad ulaznim objektom.
      * 
-     * @param Object parametar nad kojim treba da se izvrsi odredjena operacija
-     * @returns  Object objekat nad kojim se izvrsila odredjena operacija
+     * @param param tipa Object nad kojim treba da se izvrsi odredjena operacija
+     * @return  Object objekat nad kojim se izvrsila odredjena operacija
      * @throws java.lang.Exception ako dodje do greske prilikom izvrsavanja i vraca
      * odgovarajucu poruku
      * */

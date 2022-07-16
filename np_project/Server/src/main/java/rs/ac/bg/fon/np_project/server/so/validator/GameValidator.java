@@ -19,7 +19,7 @@ import rs.ac.bg.fon.np_project.commonlibrary.model.Game;
 import rs.ac.bg.fon.np_project.server.so.game.AddGameSO;
 
 /**
- * Predstavlja klasu koja vrsi validaciju drustvene igre. Sadrzi atribut tipa List<String>
+ * Predstavlja klasu koja vrsi validaciju drustvene igre. Sadrzi atribut tipa List
  * koja predstavlja listu svih gresaka koje su se javile pri proveri. Sastoji se od konstruktora, metoda startValidation,
  * validateValueIsPositive, validateNotNull, validateAlreadyExists i throwIfInvalide.
  *
@@ -29,7 +29,7 @@ import rs.ac.bg.fon.np_project.server.so.game.AddGameSO;
 public class GameValidator {
 
 	/**
-	 * Atribut koji je tipa List<String> i u sebi sadrzi sve greske koje su nastale prilikom
+	 * Atribut koji je tipa List i u sebi sadrzi sve greske koje su nastale prilikom
 	 * provere igre.
 	 */
     private final List<String> validationErros;

@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * Predstavlja klasu koja vrsi validaciju. Sadrzi atribut tipa List<String>
+ * Predstavlja klasu koja vrsi validaciju. Sadrzi atribut tipa List
  * koja predstavlja listu svih gresaka koje su se javile pri proveri. Sastoji se od konstruktora, metode
  * startValidation, validateNotNullOrEmpty, validateContainsCharacter, validateFormat i throwIfInvalide.
  *
@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class Validator {
 
 	/**
-	 * Atribut koji je tipa List<String> i u sebi sadrzi sve greske koje su nastale prilikom
+	 * Atribut koji je tipa List i u sebi sadrzi sve greske koje su nastale prilikom
 	 * provere igre.
 	 */
     private final List<String> validationErros;
@@ -54,7 +54,7 @@ public class Validator {
      * @param value tipa String koji se proverava
      * @param errorMessage tipa String poruka o gresci
      * @return validaciju 
-     * @throws ValidationExceptionrs.ac.bg.fon.np_project.server.so.validator.ValidationException ako dodje do greske 
+     * @throws rs.ac.bg.fon.np_project.server.so.validator.ValidationException ako dodje do greske 
      * prilikom validacije
      */
     public Validator validateNotNullOrEmpty(String value, String errorMessage) throws ValidationException {
@@ -72,7 +72,7 @@ public class Validator {
      * @param character tipa String da li se nalazi u stringu value
      * @param errorMessage tipa String poruka o gresci
      * @return validaciju 
-     * @throws ValidationExceptionrs.ac.bg.fon.np_project.server.so.validator.ValidationException ako dodje do greske 
+     * @throws rs.ac.bg.fon.np_project.server.so.validator.ValidationException ako dodje do greske 
      * prilikom validacije
      */
      public Validator validateContainsCharacter(String value, String character, String errorMessage) throws ValidationException {
@@ -90,7 +90,7 @@ public class Validator {
       * @param format tipa String kog formata treba da bude String value
       * @param errorMessage tipa String poruka o gresci
       * @return validaciju 
-      * @throws ValidationExceptionrs.ac.bg.fon.np_project.server.so.validator.ValidationException ako dodje do greske 
+      * @throws rs.ac.bg.fon.np_project.server.so.validator.ValidationException ako dodje do greske 
       * prilikom validacije
       */
     public Validator validateFormat(String value, String format, String errorMessage) throws ValidationException {

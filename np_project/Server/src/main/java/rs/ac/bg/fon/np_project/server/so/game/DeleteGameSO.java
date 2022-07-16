@@ -90,7 +90,7 @@ public class DeleteGameSO extends AbstractSO {
 
     /**
      * Metoda kreira promenljivu g tipa klase Game i salje da se ta igra treba obrisati iz baze.
-     * @retun null
+     * @return null
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {
@@ -109,7 +109,7 @@ public class DeleteGameSO extends AbstractSO {
      * Metoda koja prosledjuje odredjenu igru u metodu koja proverava da li je
      * drustvena igra iznajmljena pa samim tim ne moze da se izbrise iz baze.
      * 
-     * @param param tipa Game koji predstavlja drustvenu igru
+     * @param game tipa Game koji predstavlja drustvenu igru
      * @throws java.lang.Exception ako se dogodi neka greska
      * @see rs.ac.bg.fon.np_project.commonlibrary.model.Game
      * */
@@ -121,8 +121,8 @@ public class DeleteGameSO extends AbstractSO {
      * Metoda koja proverava da li drustvena igra iznajmljena i samim tim ne sme da se 
      * izbrise iz baze.
      * 
-     * @param param tipa Game koji predstavlja drustvenu igru
-     * @throws java.lang.Exception.Exception ako se dogodi da jeste iznajmljena
+     * @param game tipa Game koji predstavlja drustvenu igru
+     * @throws java.lang.Exception ako se dogodi da jeste iznajmljena
      * i izbacuje poruku "Primerci igre su zaduzeni. Nije moguce dovrsiti operaciju brisanja."
      * @throws java.lang.Exception ako se dogodi neka greska 
      * @see rs.ac.bg.fon.np_project.commonlibrary.model.Game

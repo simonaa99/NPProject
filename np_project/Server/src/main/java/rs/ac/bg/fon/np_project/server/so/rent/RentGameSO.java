@@ -77,7 +77,7 @@ public class RentGameSO extends AbstractSO {
      * Metoda koja proverava da li su ispunjeni svi vrednosni uslovi pre nego sto se izvrsi
      * iznajmljivanje.
      * 
-     * @param g tipa Game koja predstavlja drustvenu igru
+     * @param game tipa Game koja predstavlja drustvenu igru
      * @param user tipa User koji predstavlja korisnika
      * @throws java.lang.Exception koja se javlja ako se desi neka greska pri proveri
      * @see rs.ac.bg.fon.np_project.commonlibrary.model.Game
@@ -92,7 +92,7 @@ public class RentGameSO extends AbstractSO {
      * Metoda koja proverava da li su ispunjeni svi strukturni uslovi pre nego sto se izvrsi
      * iznajmljivanje.
      * 
-     * @param g tipa Game koja predstavlja drustvenu igru
+     * @param game tipa Game koja predstavlja drustvenu igru
      * @param user tipa User koji predstavlja korisnika
      * @throws java.lang.Exception koja se desava kada korisnik ima vec dva iznajmljivanja 
      * i vraca poruku "Korisnik ima dve zaduzene igre!" ili kada nema igre na stanju i vraca poruku
@@ -173,7 +173,7 @@ public class RentGameSO extends AbstractSO {
     /**
      * Metoda koja proverava da li je korisnikova clanska kartica vazeca.
      * 
-     * @param userCard tipa UserCard koja predstavlja clansku karticu korisnika
+     * @param usercard tipa UserCard koja predstavlja clansku karticu korisnika
      * @throws java.lang.Exception koja se desava kada je clanska kartica neispravna i vraca 
      * poruku "Clanska karta korisnika je istekla. Nije moguce iznajmiti igru."
      * @see rs.ac.bg.fon.np_project.commonlibrary.model.UserCard
@@ -186,7 +186,7 @@ public class RentGameSO extends AbstractSO {
     /**
      * Metoda koja azurira dostupne kolicine drustvene igre nakon iznajmljivanja.
      * 
-     * @param game tipa Game koja predstavlja drustvenu igru 
+     * @param  g tipa Game koja predstavlja drustvenu igru 
      * @param  i tipa int koja predstavlja koliki je broj odredjene igre iznajmljen
      * @throws java.sql.SQLException kada se desi neka vrsta greske u radu sa bazom prilikom
      * azuriranja kolicine igre

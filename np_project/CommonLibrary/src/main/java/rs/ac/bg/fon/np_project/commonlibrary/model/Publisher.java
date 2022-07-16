@@ -35,8 +35,8 @@ public class Publisher extends AbstractDO implements Serializable{
     /**
      * Konstruktor koji postavlja atribute publisherId i publisherName na unete vrednosti.
      *
-     * @param publisherId       nova vrednost atributa publisherId
-     * @param publisherName     nova vrednost atributa publisherName
+     * @param publisherID       nova vrednost atributa publisherId
+     * @param imePrezime     nova vrednost atributa publisherName
      */
     public Publisher(Long publisherID, String imePrezime) {
         this.publisherId = publisherID;

@@ -98,7 +98,7 @@ public class AddGameSO extends AbstractSO {
      * Metoda koja proverava da li drustvena igra vec postoji u listi igara u bazi.
      * 
      * @param game tipa Game koji predstavlja drustvenu igru
-     * @returns  boolean kao odgovor da li igra vec postoji u listi
+     * @return  boolean kao odgovor da li igra vec postoji u listi
      * @throws java.lang.Exception ako dodje do greske prilikom izvrsavanja i vraca
      * poruku "Greska prilikom provere uslova: AddGameSO"
      * @see rs.ac.bg.fon.np_project.commonlibrary.model.Game
