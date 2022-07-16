@@ -10,13 +10,24 @@ import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryGame;
 import rs.ac.bg.fon.np_project.server.so.AbstractSO;
 
 /**
- *
+ * Predstavlja klasu u kojoj se izvrsavaju metode za vracanje svih drustvenih igara iz baze.
+ * Sadrzi implementaciju metoda iz nadklase AbstractSO i atribut repositoryGame 
+ * koja je tipa klase koja se nalazi na serverskoj strani.
+ * 
  * @author Simona
+ * @version 1.0.0
  */
 public class GetAllGamesSO extends AbstractSO {
 
+	/**
+	 * Predstavlja atribut koji je tipa klase RepositoryGame koja uzima, dodaje, azurira i
+	 * i brise drustvene igre iz baze. 
+	 */
     RepositoryGame repositoryGame;
 
+    /**
+     * Konstruktor koji inicijalizuje atribut repositoryGame.
+     */
     public GetAllGamesSO() {
         repositoryGame = new RepositoryGame();
     }

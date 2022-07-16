@@ -16,14 +16,31 @@ import rs.ac.bg.fon.np_project.server.so.validator.ValidationException;
 
 
 /**
- *
+ * Predstavlja klasu u kojoj se izvrsavaju metode za dodavanje drustvene igre u bazu.
+ * Sadrzi implementaciju metoda iz nadklase AbstractSO i atribute repositoryGame i repositoryPublisher koje su tipa
+ * klase koje se nalaze na serverskoj strani.
+ * 
  * @author Simona
+ * @version 1.0.0
  */
 public class AddGameSO extends AbstractSO {
 
+	/**
+	 * Predstavlja atribut koji je tipa klase RepositoryGame koja uzima, dodaje, azurira i
+	 * i brise drustvene igre iz baze. 
+	 */
     RepositoryGame repositoryGame;
+    
+    /**
+	 * Predstavlja atribut koji je tipa klase RepositoryPublisher koja uzima, dodaje, azurira i
+	 * i brise izdavace iz baze. 
+	 */
     RepositoryPublisher repositoryPublisher;
 
+    
+    /**
+     * Konstruktor koji inicijalizuje atribute repositoryGame i repositoryPublisher.
+     */
     public AddGameSO() {
         repositoryGame = new RepositoryGame();
         repositoryPublisher = new RepositoryPublisher();
@@ -61,6 +78,14 @@ public class AddGameSO extends AbstractSO {
         return null;
     }
 
+    /**
+     * Metoda koja proverava da li drustvena igra vec postoji u listi igara u bazi.
+     * 
+     * @param Game game koji predstavlja drustvenu igru
+     * @returns  boolean kao odgovor da li igra vec postoji u listi
+     * @throws java.lang.Exception ako dodje do greske prilikom izvrsavanja i vraca
+     * poruku "Greska prilikom provere uslova: AddGameSO"
+     * */
     public boolean exists(Game game) throws Exception {
         try {
             List<Game> dbGames = repositoryGame.getAll();
@@ -77,11 +102,26 @@ public class AddGameSO extends AbstractSO {
         return false;
     }
 
+    
+    /**
+     * Metoda koja proverava da li uneta kolicina drustvenih igara veca od 0.
+     * 
+     * @param Game param koji predstavlja drustvenu igru
+     * @throws rs.ac.bg.fon.np_project.server.so.validator.ValidationException ako se desi
+     * slucaj da je unet broj manji od 0 i izbacuje odgovarajucu poruku
+     * */
     private void checkValueConstraints(Game param) throws ValidationException{
         GameValidator.startValidation().validateValueIsPositive(param.getNumberInStock(), "Kolicina mora biti veca od 0!").throwIfInvalide();
 
     }
 
+    /**
+     * Metoda koja proverava da li unet izdavac i da li igra vec postoji u bazi.
+     * 
+     * @param Game param koji predstavlja drustvenu igru
+     * @throws rs.ac.bg.fon.np_project.server.so.validator.ValidationException ako se desi
+     * slucaj da je izdavac nije unesen ili da igra vec postoji u bazi i izbacuje odgovarajucu poruku
+     * */
     private void checkStructuralConstraints(Game param) throws ValidationException{
         GameValidator.startValidation().validateNotNull(param.getPublisher(), "Izdavac igre mora biti dodat!")
                 .validateAlreadyExists(param, this, "Igra postoji u bazi!")

@@ -26,15 +26,37 @@ import rs.ac.bg.fon.np_project.server.so.AbstractSO;
 
 
 /**
- *
+ * Predstavlja klasu u kojoj se izvrsavaju metode za brisanje drustvene igre iz baze.
+ * Sadrzi implementaciju metoda iz nadklase AbstractSO, zajedno i sa svojim metodama koje proveravaju da li
+ * su svi uslovi zadovoljeni. Sadrzi i atribute repositoryGame, repositoryPublisher i repositoryRent
+ * koje su tipa klase koje se nalaze na serverskoj strani. 
+ * 
  * @author Simona
+ * @version 1.0.0
  */
 public class DeleteGameSO extends AbstractSO {
 
+	/**
+	 * Predstavlja atribut koji je tipa klase RepositoryGame koja uzima, dodaje, azurira i
+	 * i brise drustvene igre iz baze. 
+	 */
     private RepositoryGame repositoryGame;
+    
+    /**
+	 * Predstavlja atribut koji je tipa klase RepositoryGame koja uzima, dodaje, azurira i
+	 * i brise izdavace iz baze. 
+	 */
     private RepositoryPublisher repositoryPublisher;
+    
+    /**
+	 * Predstavlja atribut koji je tipa klase RepositoryGame koja uzima, dodaje, azurira i
+	 * i brise iznajmljivanja iz baze. 
+	 */
     private RepositoryRent repositoryRent;
 
+    /**
+     * Konstruktor koji inicijalizuje atribute repositoryGame, repositoryPublisher i repositoryRent.
+     */
     public DeleteGameSO() {
         repositoryGame = new RepositoryGame();
         repositoryPublisher = new RepositoryPublisher();
@@ -70,10 +92,26 @@ public class DeleteGameSO extends AbstractSO {
         return null;
     }
 
+    /**
+     * Metoda koja prosledjuje odredjenu igru u metodu koja proverava da li je
+     * drustvena igra iznajmljena pa samim tim ne moze da se izbrise iz baze.
+     * 
+     * @param Game param koji predstavlja drustvenu igru
+     * @throws java.lang.Exception ako se dogodi neka greska
+     * */
     private void checkStructuralConstraints(Game game) throws Exception {
         checkIfRentsExist(game);
     }
 
+    /**
+     * Metoda koja proverava da li drustvena igra iznajmljena i samim tim ne sme da se 
+     * izbrise iz baze.
+     * 
+     * @param Game param koji predstavlja drustvenu igru
+     * @throws java.lang.Exception.Exception ako se dogodi da jeste iznajmljena
+     * i izbacuje poruku "Primerci igre su zaduzeni. Nije moguce dovrsiti operaciju brisanja."
+     * @throws java.lang.Exception ako se dogodi neka greska 
+     * */
     private void checkIfRentsExist(Game game) throws Exception {
         try {
             String query = "SELECT * FROM iznajmljivanje WHERE igraId=" + game.getGameid() + " AND datumVracanja IS NULL";
@@ -85,18 +123,6 @@ public class DeleteGameSO extends AbstractSO {
             throw ex;
         }
 
-    }
- // zanemari jer ne treba da se brise i izdavac od igre vec samo igra a izdavac ostaje u bazi
-    private void removePublisher(Publisher publisher) throws Exception {
-
-        boolean exist = repositoryGame.checkIfGamesExist(publisher);
-        Statement statement = DbConnectionFactory.getInstance().getConnection().createStatement();
-
-        if (exist) {
-            throw new Exception("Igre ovog izdavaca postoje na stanju. Nije moguce dovrsiti operaciju brisanja.");
-        } else {
-            repositoryPublisher.delete(publisher);
-        }
     }
 
 }
