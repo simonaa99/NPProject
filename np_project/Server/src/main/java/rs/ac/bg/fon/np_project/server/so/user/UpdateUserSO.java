@@ -15,21 +15,57 @@ import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryUserCategory;
 import rs.ac.bg.fon.np_project.server.so.AbstractSO;
 
 /**
- *
+ * Predstavlja klasu u kojoj se izvrsavaju metode za azuriranje korisnika u bazu.
+ * Sadrzi implementaciju metoda iz nadklase AbstractSO i atribute repositoryUser, repositoryUserCard
+ * i repositoryUserCategory koje su tipa klase koje se nalaze na serverskoj strani.
+ * 
  * @author Simona
+ * @version 1.0.0
  */
 public class UpdateUserSO extends AbstractSO {
 
+	/**
+	 * Predstavlja atribut koji je tipa klase RepositoryUser koja uzima, dodaje, azurira i
+	 * i brise korisnike iz baze.
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryUser
+	 */
     RepositoryUser repositoryUser;
+    
+    /**
+	 * Predstavlja atribut koji je tipa klase RepositoryUserCategory koja uzima, dodaje, azurira i
+	 * i brise kategorije korisnika iz baze.
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryUserCategory
+	 */
     RepositoryUserCategory repositoryUserCategory;
+    
+    /**
+	 * Predstavlja atribut koji je tipa klase RepositoryUserCard koja uzima, dodaje, azurira i
+	 * i brise clanske kartice iz baze.
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryUserCard
+	 */
     private RepositoryUserCard repositoryUserCard;
 
+    /**
+     * Konstruktor koji inicijalizuje atribute repositoryUser,
+     * repositoryUserCard i repositoryUserCategory.
+     */
     public UpdateUserSO() {
         repositoryUser = new RepositoryUser();
         repositoryUserCategory = new RepositoryUserCategory();
         repositoryUserCard = new RepositoryUserCard();
     }
 
+    /**
+     * Metoda proverava da li je uneti parametar null. Ako jeste baca Exception i 
+     * prikazuje poruku "Nije poslat parametar!" Ako nije kreira listu korisnika i u nju 
+     * ubacuje unete parametre. Proverava da li je velicina liste manja od 2 ili 
+     * prvi element null ili drugi element null. Ako je neki uslov ispunjen baca se 
+     * Exception i prikazuje se poruka "Nisu poslati potrebni parametri!" Onda proverava
+     * da li su prva dva elementa liste instanca klase User. Ako nisu baca Exception
+     * i prikazuje poruku "Poslati objekat je neodgovarajuceg tipa!" Ako je sve u redu
+     * dodaje azuriranog korisnika u listu i prosledjuje daljim metodama
+     * za proveru.
+     */
     @Override
     protected void precondition(Object param) throws Exception {
         if (param == null) {
@@ -49,6 +85,13 @@ public class UpdateUserSO extends AbstractSO {
 
     }
 
+    /**
+     * Metoda proverava stare podatke i nove podatke korisnika koje smo azurirali i azurira u bazi.
+     * Ako dodje do greske baca se Exception i prikazuje se poruka
+     * "Greska prilikom izmene podataka o korisniku."
+     * 
+     * @return null
+     */
     @Override
     protected Object executeOperation(Object param) throws Exception {
         List<User> usersForUpdate = (List<User>) param;
@@ -70,6 +113,12 @@ public class UpdateUserSO extends AbstractSO {
 
     }
 
+    /**
+     * Metoda proverava da li korisnik postoji u bazi.
+     * Ako postoji baca Exception i prikazuje poruku "Korisnik postoji."
+     * @param user tipa User koji predstavlja korisnika kojeg smo azurirali
+     * @throws java.lang.Exception ako korisnik postoji u bazi
+     */
     private void checkStructuralConstraints(User user) throws Exception {
         boolean exists = checkIfExists(user);
         if (exists) {
@@ -78,6 +127,13 @@ public class UpdateUserSO extends AbstractSO {
 
     }
 
+    /**
+     * Metoda proverava da li korisnik postoji u bazi. Ako se javi greska baca Exception
+     * i prikazuje poruku "Greska prilikom provere postojanja korisnika u bazi."
+     * @param user tipa User korisnik koga proveravamo u bazi
+     * @return boolean da li korisnik postoji u bazi ili ne
+     * @throws java.lang.Exception ako dodje do greske pri pretrazi u bazi
+     */
     private boolean checkIfExists(User user) throws Exception {
         try {
             return repositoryUser.checkIfExists(user);
