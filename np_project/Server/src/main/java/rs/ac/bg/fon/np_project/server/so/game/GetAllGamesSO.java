@@ -46,6 +46,8 @@ public class GetAllGamesSO extends AbstractSO {
     /**
      * Metoda kreira listu games i u tu listu ubacuje i vraca sve igre iz baze. 
      * Ako dodje do greske javlja se Exception i pojavljuje poruka "Greska prilikom ucitavanja igra."
+     * 
+     * @return lista svih drustvenih igri iz baze
      */
     @Override
     protected Object executeOperation(Object games) throws Exception {

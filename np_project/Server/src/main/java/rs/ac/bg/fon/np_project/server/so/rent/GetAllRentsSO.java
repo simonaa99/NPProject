@@ -42,7 +42,9 @@ public class GetAllRentsSO extends AbstractSO{
     }
 
     /**
-     * Metoda vraca sva iznajmljivanja iz baze.
+     * Metoda vraca sva iznajmljivanja iz baze. Ako dodje do greske baca Exception.
+     * 
+     * @return sva iznajmljivanja iz baze
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {

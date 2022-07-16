@@ -48,8 +48,11 @@ public class GetAllUserRentsSO extends AbstractSO {
     }
 
     /**
-     * Metoda pravi listu svih iznajmljivanja drustvenih igara za odredjenog korisnike
-     * iz baze i vraca tu listu.
+     * Metoda pravi listu svih iznajmljivanja drustvenih igara za odredjenog korisnika
+     * iz baze i vraca tu listu. Ako dodje do greske baca Exception.
+     * 
+     * @return listu svih iznajmljivanja svih iznajmljivanja drustvenih igara za odredjenog korisnika
+     * iz baze
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {

@@ -90,6 +90,7 @@ public class DeleteGameSO extends AbstractSO {
 
     /**
      * Metoda kreira promenljivu g tipa klase Game i salje da se ta igra treba obrisati iz baze.
+     * @retun null
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {

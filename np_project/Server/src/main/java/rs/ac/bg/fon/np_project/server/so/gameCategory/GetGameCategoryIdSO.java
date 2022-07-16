@@ -46,7 +46,10 @@ public class GetGameCategoryIdSO extends AbstractSO{
           }
 
     /**
-     * Metoda vraca odredjenu kategoriju po id-u iz baze.
+     * Metoda vraca odredjenu kategoriju po id-u iz baze. Ako dodje do greske
+     * baca Exception.
+     * 
+     * @return odredjenu kategoriju igre u zavisnosti od id-a
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {

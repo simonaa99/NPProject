@@ -43,7 +43,7 @@ public class GetAllUsersSO extends AbstractSO{
 
     /**
      * Metoda koja vraca sve korisnike iz baze.
-     * @return sve okorisnike iz baze
+     * @return sve korisnike iz baze
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {

@@ -42,7 +42,10 @@ public class GetAllPublishersSO extends AbstractSO{
            }
 
     /**
-     * Metoda vraca sve izdavace igara iz baze.
+     * Metoda vraca sve izdavace igara iz baze. Ako dodje do greske baca
+     * Exception.
+     * 
+     * @return svi izdavaci iz baze
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {

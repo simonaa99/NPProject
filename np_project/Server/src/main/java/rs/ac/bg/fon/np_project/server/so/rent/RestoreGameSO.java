@@ -63,6 +63,8 @@ public class RestoreGameSO extends AbstractSO {
      * Poziva metode za azuriranje kolicine igara na stanju. Ako dodje do greske baca Exception
      * sa odgovarajucom porukom.
      * 
+     * @return null
+     * 
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {

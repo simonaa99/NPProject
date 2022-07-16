@@ -49,7 +49,11 @@ public class GetUserRentsSO extends AbstractSO{
 
     /**
      * Metoda pravi listu svih iznajmljivanja drustvenih igara odredjenog korisnika
-     * koje jos uvek nije vratio iz baze i prikazuje ih.Vraca objekat tipa User.
+     * koje jos uvek nije vratio iz baze i prikazuje ih.Vraca objekat tipa User. 
+     * Ako dodje do greske baca Exception.
+     * 
+     * @return istu svih iznajmljivanja drustvenih igara odredjenog korisnika
+     * koje jos uvek nije vratio
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {

@@ -50,6 +50,8 @@ public class GetGamesByQuerySO extends AbstractSO{
      * Metoda kreira listu igara i u nju ubacuje i vraca sve igre iz baze. 
      * Ako dodje do greske baca Exception i prikazuje poruku 
      * "Greska prilikom ucitavanja igara."
+     * 
+     * @return lista svih drustvenih igri iz baze
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {

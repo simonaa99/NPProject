@@ -27,7 +27,10 @@ public class GetGameCategoriesSO extends AbstractSO{
             }
 
     /**
-     * Metoda vraca sve kategorije drustvenih igara iz baze.
+     * Metoda vraca sve kategorije drustvenih igara iz baze. Ako dodje do 
+     * greske baca Exception.
+     * 
+     * @return sve kategorije igri iz baze
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {

@@ -118,7 +118,9 @@ public class RentGameSO extends AbstractSO {
     /**
      * Metoda kreira promenljive user i game tipa klasa User i Game. Prosledjuje metodama 
      * promenljive za azuriranje kolicine igara na stanju u bazi. Ako dodje do 
-     * gfreske baca se exception i prikazuje odgovarajucu poruku. Metoda vraca vrednost null. 
+     * greske baca se exception i prikazuje odgovarajucu poruku.
+     * 
+     *  @return null
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {
@@ -138,6 +140,7 @@ public class RentGameSO extends AbstractSO {
      * Metoda koja proverava korisnikova vec prethodna iznajmljivanja.
      * 
      * @param u tipa User koja predstavlja korisnika
+     * @return koliko iznajmljivanja ima korisnik
      * @throws java.lang.Exception koja se desava kada dodje do neke greske pri proveri u bazi
      * @see rs.ac.bg.fon.np_project.commonlibrary.model.User
      */
@@ -149,6 +152,7 @@ public class RentGameSO extends AbstractSO {
      * Metoda koja proverava da li postoji na stanju igra koju korisnik zeli da iznajmi.
      * 
      * @param g tipa Game koja predstavlja drustvenu igru
+     * @return koliko ima odredjene igre na stanju
      * @throws java.lang.Exception koja se desava kada dodje do greske u bazi i vraca 
      * poruku "Greska prilikom provere stanja na skladistu."
      * @see rs.ac.bg.fon.np_project.commonlibrary.model.Game

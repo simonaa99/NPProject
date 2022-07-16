@@ -69,7 +69,9 @@ public class AddGameSO extends AbstractSO {
      * Metoda kreira promenljivu game tipa Game i pravi listu izdavaca drustvenih igri iz baze.
      * Onda proverava da li je velicina te liste 0. Ako jeste dodaje izdavaca u listu. Dodaje 
      * tog izdavaca kao kreatora igre i dodaje tu igru u bazu.  Ako dodje do greske baca exception
-     * o prikazuje poruku "Greska prilikom dodavanja igre." Metoda vraca vrednost null.
+     * o prikazuje poruku "Greska prilikom dodavanja igre."
+     * 
+     * @return null
      */
     @Override
     protected Object executeOperation(Object param) throws Exception {
