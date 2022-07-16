@@ -27,13 +27,15 @@ public class AddGameSO extends AbstractSO {
 
 	/**
 	 * Predstavlja atribut koji je tipa klase RepositoryGame koja uzima, dodaje, azurira i
-	 * i brise drustvene igre iz baze. 
+	 * i brise drustvene igre iz baze.
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryGame
 	 */
     RepositoryGame repositoryGame;
     
     /**
 	 * Predstavlja atribut koji je tipa klase RepositoryPublisher koja uzima, dodaje, azurira i
 	 * i brise izdavace iz baze. 
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryPublisher
 	 */
     RepositoryPublisher repositoryPublisher;
 
@@ -46,6 +48,12 @@ public class AddGameSO extends AbstractSO {
         repositoryPublisher = new RepositoryPublisher();
     }
 
+    /**
+     * Metoda proverava da li je uneti parametar null ili nije instanca klase Game.
+     * Ako je neki od ovih uslova ispunjen baca Exception i prikazuje poruku
+     * "Poslati objekat je neodgovarajuceg tipa!" Ako ne ispunjavaju kreira promenljivu 
+     * game klase Game i prosledjuje je drugim metodama za proveru.
+     */
     @Override
     protected void precondition(Object param) throws Exception {
         if (param == null || !(param instanceof Game)) {
@@ -57,6 +65,12 @@ public class AddGameSO extends AbstractSO {
         }
     }
 
+    /**
+     * Metoda kreira promenljivu game tipa Game i pravi listu izdavaca drustvenih igri iz baze.
+     * Onda proverava da li je velicina te liste 0. Ako jeste dodaje izdavaca u listu. Dodaje 
+     * tog izdavaca kao kreatora igre i dodaje tu igru u bazu.  Ako dodje do greske baca exception
+     * o prikazuje poruku "Greska prilikom dodavanja igre." Metoda vraca vrednost null.
+     */
     @Override
     protected Object executeOperation(Object param) throws Exception {
         Game game = (Game) param;
@@ -81,10 +95,11 @@ public class AddGameSO extends AbstractSO {
     /**
      * Metoda koja proverava da li drustvena igra vec postoji u listi igara u bazi.
      * 
-     * @param Game game koji predstavlja drustvenu igru
+     * @param game tipa Game koji predstavlja drustvenu igru
      * @returns  boolean kao odgovor da li igra vec postoji u listi
      * @throws java.lang.Exception ako dodje do greske prilikom izvrsavanja i vraca
      * poruku "Greska prilikom provere uslova: AddGameSO"
+     * @see rs.ac.bg.fon.np_project.commonlibrary.model.Game
      * */
     public boolean exists(Game game) throws Exception {
         try {
@@ -106,9 +121,10 @@ public class AddGameSO extends AbstractSO {
     /**
      * Metoda koja proverava da li uneta kolicina drustvenih igara veca od 0.
      * 
-     * @param Game param koji predstavlja drustvenu igru
+     * @param param tipa Game koji predstavlja drustvenu igru
      * @throws rs.ac.bg.fon.np_project.server.so.validator.ValidationException ako se desi
      * slucaj da je unet broj manji od 0 i izbacuje odgovarajucu poruku
+     * @see rs.ac.bg.fon.np_project.commonlibrary.model.Game
      * */
     private void checkValueConstraints(Game param) throws ValidationException{
         GameValidator.startValidation().validateValueIsPositive(param.getNumberInStock(), "Kolicina mora biti veca od 0!").throwIfInvalide();
@@ -118,9 +134,10 @@ public class AddGameSO extends AbstractSO {
     /**
      * Metoda koja proverava da li unet izdavac i da li igra vec postoji u bazi.
      * 
-     * @param Game param koji predstavlja drustvenu igru
+     * @param param tipa Game koji predstavlja drustvenu igru
      * @throws rs.ac.bg.fon.np_project.server.so.validator.ValidationException ako se desi
      * slucaj da je izdavac nije unesen ili da igra vec postoji u bazi i izbacuje odgovarajucu poruku
+     * @see rs.ac.bg.fon.np_project.commonlibrary.model.Game
      * */
     private void checkStructuralConstraints(Game param) throws ValidationException{
         GameValidator.startValidation().validateNotNull(param.getPublisher(), "Izdavac igre mora biti dodat!")

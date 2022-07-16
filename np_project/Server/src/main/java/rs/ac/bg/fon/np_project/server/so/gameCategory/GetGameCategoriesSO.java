@@ -18,11 +18,17 @@ import rs.ac.bg.fon.np_project.server.so.AbstractSO;
  */
 public class GetGameCategoriesSO extends AbstractSO{
 
+	/**
+	 * Metoda ne proverava nikakve uslove.
+	 */
     @Override
     protected void precondition(Object param) throws Exception {
         //no precondition to check
             }
 
+    /**
+     * Metoda vraca sve kategorije drustvenih igara iz baze.
+     */
     @Override
     protected Object executeOperation(Object param) throws Exception {
           return GameCategory.values(); }

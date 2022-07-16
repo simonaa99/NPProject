@@ -39,18 +39,21 @@ public class DeleteGameSO extends AbstractSO {
 	/**
 	 * Predstavlja atribut koji je tipa klase RepositoryGame koja uzima, dodaje, azurira i
 	 * i brise drustvene igre iz baze. 
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryGame
 	 */
     private RepositoryGame repositoryGame;
     
     /**
 	 * Predstavlja atribut koji je tipa klase RepositoryGame koja uzima, dodaje, azurira i
 	 * i brise izdavace iz baze. 
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryPublisher
 	 */
     private RepositoryPublisher repositoryPublisher;
     
     /**
 	 * Predstavlja atribut koji je tipa klase RepositoryGame koja uzima, dodaje, azurira i
 	 * i brise iznajmljivanja iz baze. 
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryRent
 	 */
     private RepositoryRent repositoryRent;
 
@@ -63,6 +66,12 @@ public class DeleteGameSO extends AbstractSO {
         repositoryRent = new RepositoryRent();
     }
 
+    /**
+     * Metoda proverava da li je uneti parametar null ili nije instanca klase Game.
+     * Ako je neki od ovih uslova ispunjen baca Exception i prikazuje poruku
+     * "Poslati objekat je neodgovarajuceg tipa!" Ako ne ispunjavaju kreira promenljivu 
+     * game klase Game i prosledjuje je drugim metodama za proveru.
+     */
     @Override
     protected void precondition(Object param) throws Exception {
         if (param == null || !(param instanceof Game)) {
@@ -79,6 +88,9 @@ public class DeleteGameSO extends AbstractSO {
         }
     }
 
+    /**
+     * Metoda kreira promenljivu g tipa klase Game i salje da se ta igra treba obrisati iz baze.
+     */
     @Override
     protected Object executeOperation(Object param) throws Exception {
         Game g = (Game) param;
@@ -96,8 +108,9 @@ public class DeleteGameSO extends AbstractSO {
      * Metoda koja prosledjuje odredjenu igru u metodu koja proverava da li je
      * drustvena igra iznajmljena pa samim tim ne moze da se izbrise iz baze.
      * 
-     * @param Game param koji predstavlja drustvenu igru
+     * @param param tipa Game koji predstavlja drustvenu igru
      * @throws java.lang.Exception ako se dogodi neka greska
+     * @see rs.ac.bg.fon.np_project.commonlibrary.model.Game
      * */
     private void checkStructuralConstraints(Game game) throws Exception {
         checkIfRentsExist(game);
@@ -107,10 +120,11 @@ public class DeleteGameSO extends AbstractSO {
      * Metoda koja proverava da li drustvena igra iznajmljena i samim tim ne sme da se 
      * izbrise iz baze.
      * 
-     * @param Game param koji predstavlja drustvenu igru
+     * @param param tipa Game koji predstavlja drustvenu igru
      * @throws java.lang.Exception.Exception ako se dogodi da jeste iznajmljena
      * i izbacuje poruku "Primerci igre su zaduzeni. Nije moguce dovrsiti operaciju brisanja."
      * @throws java.lang.Exception ako se dogodi neka greska 
+     * @see rs.ac.bg.fon.np_project.commonlibrary.model.Game
      * */
     private void checkIfRentsExist(Game game) throws Exception {
         try {

@@ -22,6 +22,7 @@ public class GetGameCategoryIdSO extends AbstractSO{
 	/**
 	 * Predstavlja atribut koji je tipa klase RepositoryGameCategory koja uzima, dodaje, azurira i
 	 * i brise kategorije drustvenih igara iz baze. 
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryGameCategory
 	 */
     RepositoryGameCategory repositoryGameCategory;
 
@@ -33,12 +34,20 @@ public class GetGameCategoryIdSO extends AbstractSO{
     }
     
 
+    /**
+     * Metoda proverava da li je uneti parametar null ili nije instanca klase String.
+     * Ako ispunjava neke uslove baca se Exception i prikazuje poruka 
+     * "Poslati objekat je neodgovarajuceg tipa!"
+     */
     @Override
     protected void precondition(Object param) throws Exception {
           if(param==null || !(param instanceof String))
             throw new Exception("Poslati objekat je neodgovarajuceg tipa!");
           }
 
+    /**
+     * Metoda vraca odredjenu kategoriju po id-u iz baze.
+     */
     @Override
     protected Object executeOperation(Object param) throws Exception {
      return repositoryGameCategory.getGameCategoryId((String)param);

@@ -21,6 +21,7 @@ public class GetAllPublishersSO extends AbstractSO{
 	/**
 	 * Predstavlja atribut koji je tipa klase RepositoryPublisher koja uzima, dodaje, azurira i
 	 * i brise izdavace iz baze. 
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryPublisher
 	 */
     RepositoryPublisher repositoryPublisher;
 
@@ -32,11 +33,17 @@ public class GetAllPublishersSO extends AbstractSO{
     }
     
 
+    /**
+     * Metoda ne proverava nikakve uslove.
+     */
     @Override
     protected void precondition(Object param) throws Exception {
         //no precondition to check
            }
 
+    /**
+     * Metoda vraca sve izdavace igara iz baze.
+     */
     @Override
     protected Object executeOperation(Object param) throws Exception {
        return repositoryPublisher.getAll();

@@ -24,6 +24,7 @@ public class GetGamesByQuerySO extends AbstractSO{
 	/**
 	 * Predstavlja atribut koji je tipa klase RepositoryGame koja uzima, dodaje, azurira i
 	 * i brise drustvene igre iz baze. 
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryGame
 	 */
 	private RepositoryGame repositoryGame;
 
@@ -34,12 +35,22 @@ public class GetGamesByQuerySO extends AbstractSO{
         repositoryGame=new RepositoryGame();
     }
 
+    /**
+     * Metoda proverava da li je uneti parametar null ili nije instanca klase String.
+     * Ako je neki od ovih uslova ispunjen baca Exception i prikazuje poruku
+     * "Poslati objekat je neodgovarajuceg tipa!"
+     */
     @Override
     protected void precondition(Object param) throws Exception {
         if(param==null || !(param instanceof String))
             throw new Exception("Poslati objekat je neodgovarajuceg tipa!");
     }
 
+    /**
+     * Metoda kreira listu igara i u nju ubacuje i vraca sve igre iz baze. 
+     * Ako dodje do greske baca Exception i prikazuje poruku 
+     * "Greska prilikom ucitavanja igara."
+     */
     @Override
     protected Object executeOperation(Object param) throws Exception {
         List<Game> games = new ArrayList<>();

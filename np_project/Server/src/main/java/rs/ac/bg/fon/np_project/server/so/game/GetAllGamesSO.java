@@ -22,6 +22,7 @@ public class GetAllGamesSO extends AbstractSO {
 	/**
 	 * Predstavlja atribut koji je tipa klase RepositoryGame koja uzima, dodaje, azurira i
 	 * i brise drustvene igre iz baze. 
+	 * @see rs.ac.bg.fon.np_project.server.repository.impl.RepositoryGame
 	 */
     RepositoryGame repositoryGame;
 
@@ -33,12 +34,19 @@ public class GetAllGamesSO extends AbstractSO {
     }
     
 
+    /**
+     * Metoda nema nikakve uslove da proverava.
+     */
     @Override
     protected void precondition(Object param) throws Exception {
         //no precondidion to check
 
     }
 
+    /**
+     * Metoda kreira listu games i u tu listu ubacuje i vraca sve igre iz baze. 
+     * Ako dodje do greske javlja se Exception i pojavljuje poruka "Greska prilikom ucitavanja igra."
+     */
     @Override
     protected Object executeOperation(Object games) throws Exception {
         games = new ArrayList<>();
