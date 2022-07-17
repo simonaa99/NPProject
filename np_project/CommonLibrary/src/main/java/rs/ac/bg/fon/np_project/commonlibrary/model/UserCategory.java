@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Predstavlja domensku klasu kategorije kojoj korisnik pripada.
  * Sadrzi atribute: userCategoryId, name i membershipFeeDiscount.
  * Ovi atributi su vezani za identifikaciju kategorije kojoj korisnik pripada.
- * Takodje, nalaze se i get i set metode zajedno sa metodama iz klase AbstractDO.
+ * Takodje, nalaze se i get i set metode.
  * 
  * @author Simona
  * @version 1.0.0
