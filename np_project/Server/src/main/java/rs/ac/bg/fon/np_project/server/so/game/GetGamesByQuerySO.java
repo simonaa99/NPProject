@@ -66,4 +66,6 @@ public class GetGamesByQuerySO extends AbstractSO{
         return games;
     }
     
+    
+    
 }

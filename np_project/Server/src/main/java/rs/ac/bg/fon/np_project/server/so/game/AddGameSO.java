@@ -115,7 +115,7 @@ public class AddGameSO extends AbstractSO {
         } catch (Exception ex) {ex.printStackTrace();
             throw new Exception("Greska prilikom provere uslova: AddGameSO");
             
-        }
+        } 
         return false;
     }
 

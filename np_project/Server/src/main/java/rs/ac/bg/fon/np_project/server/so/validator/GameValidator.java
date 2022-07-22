@@ -108,7 +108,7 @@ public class GameValidator {
         return this;
     }
     
-    /**
+    /** 
      * Metoda koja baca ValidationException ako lista validationErrors nije prazna i 
      * prikazuje sve poruke koje su se nalazile u listi validationErrors.
      * 

@@ -81,7 +81,7 @@ public class UpdateUserSO extends AbstractSO {
         } else {
             User newUser = ((List<User>) param).get(1);
             checkStructuralConstraints(newUser);
-        }
+        } 
 
     }
 
