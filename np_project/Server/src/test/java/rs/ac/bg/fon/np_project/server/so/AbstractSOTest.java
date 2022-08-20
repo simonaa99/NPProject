@@ -24,16 +24,5 @@ public abstract class AbstractSOTest {
 	
 	Object param;
 	
-	
-	@Test
-	void testComitTransaction() {
-		assertThrows(java.lang.Exception.class,()->{db.getInstance().getConnection().commit();});
-		
-	}
-
-	@Test
-	void testRollbackTransaction() {
-		assertThrows(java.lang.Exception.class,()->{db.getInstance().getConnection().rollback();});
-	}
 
 }
