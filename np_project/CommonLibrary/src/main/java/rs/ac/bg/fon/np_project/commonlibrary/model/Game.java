@@ -72,8 +72,11 @@ public class Game extends AbstractDO implements Serializable {
     /**
      * Postavlja novu vrednost id igre
      * @param gameid nova vrednost atributa gameid
+     * @throws java.lang.IllegalArgumentException ako je uneti id nula ili manji od nule
 	 */
     public void setGameid(Long gameid) {
+    	if (gameid <= 0)
+			throw new IllegalArgumentException("Id mora bii veci od nule");
         this.gameid = gameid;
     }
     
@@ -88,8 +91,15 @@ public class Game extends AbstractDO implements Serializable {
     /**
      * Postavlja novu vrednost za naziv igre
      * @param gameName nova vrednost atributa gameName
+     * @throws java.lang.NullPointerException ako je uneti naziv igre null
+	 * @throws java.lang.IllegalArgumentException ako je uneti naziv igre prazan String
 	 */
     public void setGameName(String gameName) {
+    	if (gameName == null)
+			throw new NullPointerException("Naziv igre ne sme biti null");
+		
+		if (gameName.isEmpty())
+			throw new IllegalArgumentException("Naziv igre ne sme biti prazan string");
         this.gameName = gameName;
     }
 
@@ -104,8 +114,11 @@ public class Game extends AbstractDO implements Serializable {
     /**
      * Postavlja novu vrednost za broj igraca koji bi trebalo da igraju igru
      * @param numPlayers nova vrednost atributa numPlayers
+     * @throws java.lang.IllegalArgumentException ako je uneti broj igraca nula ili manji od nule
 	 */
     public void setNumPlayers(Integer numPlayers) {
+    	if (numPlayers <= 0)
+			throw new IllegalArgumentException("Broj igraca mora bii veci od nule");
         this.numPlayers = numPlayers;
     }
 
@@ -120,8 +133,11 @@ public class Game extends AbstractDO implements Serializable {
     /**
      * Postavlja novu vrednost za kategoriju igre
      * @param gameCategory nova vrednost atributa gameCategory
+     * @throws java.lang.NullPointerException ako je uneta kategorija igre null
 	 */
     public void setGameCategory(GameCategory gameCategory) {
+    	if (gameCategory == null)
+			throw new NullPointerException("Kategorija igre ne sme biti null");
         this.gameCategory = gameCategory;
     }
 
@@ -136,8 +152,11 @@ public class Game extends AbstractDO implements Serializable {
     /**
      * Postavlja novu vrednost za izdavaca igre
      * @param publisher nova vrednost atributa publisher
+     * @throws java.lang.NullPointerException ako je uneti izdavac igre null
 	 */
     public void setPublisher(Publisher publisher) {
+    	if (publisher == null)
+			throw new NullPointerException("Izdavac igre ne sme biti null");
         this.publisher = publisher;
     }
 
@@ -152,12 +171,63 @@ public class Game extends AbstractDO implements Serializable {
     /**
      * Postavlja novu vrednost za kolicinu dostupnih igara
      * @param numberInStock nova vrednost atributa numberInStock
+     * @throws java.lang.IllegalArgumentException ako je uneti broj igri nula ili manji od nule
 	 */
     public void setNumberInStock(Integer numberInStock) {
+    	if (numberInStock <= 0)
+			throw new IllegalArgumentException("Broj igri mora bii veci od nule");
         this.numberInStock = numberInStock;
     }
 
+    
+    
     @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((gameName == null) ? 0 : gameName.hashCode());
+		result = prime * result + ((gameid == null) ? 0 : gameid.hashCode());
+		result = prime * result + ((publisher == null) ? 0 : publisher.hashCode());
+		return result;
+	}
+
+    /**
+	 * Poredi dve igre po id-ju, nazivu i izdavacu
+	 * 
+	 * @return
+	 * <ul>
+	 * <li>true - ako je id, naziv i izdavac isti kod obe igre</li>
+	 * <li>false - ako to nije slucaj</li>
+	 * </ul>
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Game other = (Game) obj;
+		if (gameName == null) {
+			if (other.gameName != null)
+				return false;
+		} else if (!gameName.equals(other.gameName))
+			return false;
+		if (gameid == null) {
+			if (other.gameid != null)
+				return false;
+		} else if (!gameid.equals(other.gameid))
+			return false;
+		if (publisher == null) {
+			if (other.publisher != null)
+				return false;
+		} else if (!publisher.equals(other.publisher))
+			return false;
+		return true;
+	}
+
+	@Override
     public String getAttributeList() {
         return "naziv, brojIgraca, kategorijaId, izdavacId, kolicina";
        }
@@ -178,5 +248,6 @@ public class Game extends AbstractDO implements Serializable {
     public String getQueryCondition() {
         return "id="+getGameid();
             }
+    
     
 }

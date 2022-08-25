@@ -79,8 +79,11 @@ public class User extends AbstractDO implements Serializable {
     /**
      * Postavlja novu vrednost id korisnika.
      * @param userId nova vrednost atributa userId
+     * @throws java.lang.IllegalArgumentException ako je uneti id korisnika nula ili manji od nule
 	 */
     public void setUserId(Long userId) {
+    	if (userId <= 0)
+			throw new IllegalArgumentException("Id korisnika mora bii veci od nule");
         this.userId = userId;
     }
 
@@ -95,8 +98,15 @@ public class User extends AbstractDO implements Serializable {
     /**
      * Postavlja novo ime korisnika.
      * @param name nova vrednost atributa name
+     * @throws java.lang.NullPointerException ako je uneto ime korisnika null
+	 * @throws java.lang.IllegalArgumentException ako je uneto ime korisnika prazan String
 	 */
     public void setName(String name) {
+    	if (name == null)
+			throw new NullPointerException("Ime korisnika ne sme biti null");
+		
+		if (name.isEmpty())
+			throw new IllegalArgumentException("Ime korisnika ne sme biti prazan string");
         this.name = name;
     }
 
@@ -111,8 +121,15 @@ public class User extends AbstractDO implements Serializable {
     /**
      * Postavlja novo prezime korisnika.
      * @param lastName nova vrednost atributa lastName
+     * @throws java.lang.NullPointerException ako je uneto prezime korisnika null
+	 * @throws java.lang.IllegalArgumentException ako je uneto prezime korisnika prazan String
 	 */
     public void setLastName(String lastName) {
+    	if (lastName == null)
+			throw new NullPointerException("Prezime korisnika ne sme biti null");
+		
+		if (lastName.isEmpty())
+			throw new IllegalArgumentException("Prezime korisnika ne sme biti prazan string");
         this.lastName = lastName;
     }
 
@@ -127,8 +144,15 @@ public class User extends AbstractDO implements Serializable {
     /**
      * Postavlja novu vrednost broja telefona korisnika.
      * @param phoneNumber nova vrednost atributa phoneNumber
+     * @throws java.lang.NullPointerException ako je uneti broj telefona null
+	 * @throws java.lang.IllegalArgumentException ako je uneti broj telefona prazan String
 	 */
     public void setPhoneNumber(String phoneNumber) {
+    	if (phoneNumber == null)
+			throw new NullPointerException("Broj telefona ne sme biti null");
+		
+		if (phoneNumber.isEmpty())
+			throw new IllegalArgumentException("Broj telefona ne sme biti prazan string");
         this.phoneNumber = phoneNumber;
     }
 
@@ -143,8 +167,15 @@ public class User extends AbstractDO implements Serializable {
     /**
      * Postavlja novu adresu korisnika.
      * @param address nova vrednost atributa address
+     * @throws java.lang.NullPointerException ako je uneta adresa null
+	 * @throws java.lang.IllegalArgumentException ako je uneta adresa prazan String
 	 */
     public void setAddress(String address) {
+    	if (address == null)
+			throw new NullPointerException("Adresa ne sme biti null");
+		
+		if (address.isEmpty())
+			throw new IllegalArgumentException("Adresa ne sme biti prazan string");
         this.address = address;
     }
 
@@ -159,8 +190,11 @@ public class User extends AbstractDO implements Serializable {
     /**
      * Postavlja novu vrednost kategorije korisnika.
      * @param userCategory nova vrednost atributa userCategory
+     * @throws java.lang.NullPointerException ako je uneta kategorija korisnika null
 	 */
     public void setUserCategory(UserCategory userCategory) {
+    	if (userCategory == null)
+			throw new NullPointerException("Kategorija korisnika ne sme biti null");
         this.userCategory = userCategory;
     }
 
@@ -175,12 +209,63 @@ public class User extends AbstractDO implements Serializable {
     /**
      * Postavlja novu vrednost clanske kartice korisnika.
      * @param usercard nova vrednost atributa usercard
+     * @throws java.lang.NullPointerException ako je uneta kartica korisnika null
 	 */
     public void setUsercard(UserCard usercard) {
+    	if (usercard == null)
+			throw new NullPointerException("Kartica korisnika ne sme biti null");
         this.usercard = usercard;
     }
+    
+    
 
     @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		return result;
+	}
+
+    /**
+	 * Poredi dva korsinika po id-ju, imenu i prezimenu
+	 * 
+	 * @return
+	 * <ul>
+	 * <li>true - ako je id, ime i prezime isti kod oba korisnika</li>
+	 * <li>false - ako to nije slucaj</li>
+	 * </ul>
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
+		return true;
+	}
+
+	@Override
     public String getAttributeList() {
         return "ime, prezime, brojTelefona, adresa, kategorijaId, clanskaKartaId";
     }

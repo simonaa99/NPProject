@@ -88,8 +88,15 @@ public class Worker extends AbstractDO implements Serializable{
     /**
      * Postavlja novo ime zaposlenom.
      * @param firstName nova vrednost atributa firstName
+     * @throws java.lang.NullPointerException ako je uneto ime zaposlenog null
+	 * @throws java.lang.IllegalArgumentException ako je uneto ime zaposlenog prazan String
 	 */
     public void setFirstName(String firstName) {
+    	if (firstName == null)
+			throw new NullPointerException("Ime zaposlenog ne sme biti null");
+		
+		if (firstName.isEmpty())
+			throw new IllegalArgumentException("Ime zaposlenog ne sme biti prazan string");
         this.firstName = firstName;
     }
 
@@ -104,8 +111,15 @@ public class Worker extends AbstractDO implements Serializable{
     /**
      * Postavlja novo prezime zaposlenom.
      * @param lastName nova vrednost atributa lastName
+     * @throws java.lang.NullPointerException ako je uneto prezime zaposlenog null
+	 * @throws java.lang.IllegalArgumentException ako je uneto prezime zaposlenog prazan String
 	 */
     public void setLastName(String lastName) {
+    	if (lastName == null)
+			throw new NullPointerException("Prezime zaposlenog ne sme biti null");
+		
+		if (lastName.isEmpty())
+			throw new IllegalArgumentException("Prezime zaposlenog ne sme biti prazan string");
         this.lastName = lastName;
     }
     
@@ -140,8 +154,11 @@ public class Worker extends AbstractDO implements Serializable{
     /**
      * Postavlja novu vrednost id zaposlenog.
      * @param id nova vrednost atributa id
+     * @throws java.lang.IllegalArgumentException ako je uneti id zaposlenog nula ili manji od nule
 	 */
     public void setId(Long id) {
+    	if (id <= 0)
+			throw new IllegalArgumentException("Id zaposlenog mora bii veci od nule");
         this.id = id;
     }
 
@@ -156,8 +173,15 @@ public class Worker extends AbstractDO implements Serializable{
     /**
      * Postavlja novu vrednost username-a zaposlenog.
      * @param username nova vrednost atributa username
+     * @throws java.lang.NullPointerException ako je uneti username zaposlenog null
+	 * @throws java.lang.IllegalArgumentException ako je uneti username zaposlenog prazan String
 	 */
     public void setUsername(String username) {
+    	if (username == null)
+			throw new NullPointerException("Username zaposlenog ne sme biti null");
+		
+		if (username.isEmpty())
+			throw new IllegalArgumentException("Username zaposlenog ne sme biti prazan string");
         this.username = username;
     }
 
@@ -172,12 +196,67 @@ public class Worker extends AbstractDO implements Serializable{
     /**
      * Postavlja novu sifru zaposlenog.
      * @param password nova vrednost atributa password
+     * @throws java.lang.NullPointerException ako je uneta sifra zaposlenog null
+	 * @throws java.lang.IllegalArgumentException ako je uneta sifra zaposlenog prazan String
 	 */
     public void setPassword(String password) {
+    	if (password == null)
+			throw new NullPointerException("SIfra zaposlenog ne sme biti null");
+		
+		if (password.isEmpty())
+			throw new IllegalArgumentException("Sifra zaposlenog ne sme biti prazan string");
         this.password = password;
     }
 
+    
+    
     @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		return result;
+	}
+
+    /**
+	 * Poredi dva zaposlenog po id-ju, imenu i prezimenu
+	 * 
+	 * @return
+	 * <ul>
+	 * <li>true - ako je id, ime i prezime isti kod oba zaposlenog</li>
+	 * <li>false - ako to nije slucaj</li>
+	 * </ul>
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Worker other = (Worker) obj;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		return true;
+	}
+
+	@Override
     public String getAttributeList() {
         return "username, password, ime, prezime";
           }

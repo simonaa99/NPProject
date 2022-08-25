@@ -60,8 +60,11 @@ public class Publisher extends AbstractDO implements Serializable{
     /**
      * Postavlja novu vrednost id izdavaca.
      * @param publisherId nova vrednost atributa publisherId
+     * @throws java.lang.IllegalArgumentException ako je uneti id izdavaca nula ili manji od nule
 	 */
     public void setPublisherId(Long publisherId) {
+    	if (publisherId <= 0)
+			throw new IllegalArgumentException("Id izdavaca mora bii veci od nule");
         this.publisherId = publisherId;
     }
 
@@ -76,12 +79,55 @@ public class Publisher extends AbstractDO implements Serializable{
     /**
      * Postavlja novu vrednost naziva izdavaca.
      * @param publisherName nova vrednost atributa publisherName
+     * @throws java.lang.NullPointerException ako je uneti naziv izdavaca null
+	 * @throws java.lang.IllegalArgumentException ako je uneti naziv izdavaca prazan String
 	 */
     public void setPublisherName(String publisherName) {
+    	if (publisherName == null)
+			throw new NullPointerException("Naziv izdavaca ne sme biti null");
+		
+		if (publisherName.isEmpty())
+			throw new IllegalArgumentException("Naziv izdavaca ne sme biti prazan string");
         this.publisherName = publisherName;
     }
 
+    
+    
+    @Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((publisherId == null) ? 0 : publisherId.hashCode());
+		return result;
+	}
+
     /**
+	 * Poredi dva izdavaca po id-ju
+	 * 
+	 * @return
+	 * <ul>
+	 * <li>true - ako je id isti kod oba izdavaca</li>
+	 * <li>false - ako to nije slucaj</li>
+	 * </ul>
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Publisher other = (Publisher) obj;
+		if (publisherId == null) {
+			if (other.publisherId != null)
+				return false;
+		} else if (!publisherId.equals(other.publisherId))
+			return false;
+		return true;
+	}
+
+	/**
      * Vraca ime izdavaca.
      *
      * @return String koji predstavlja ime izdavaca.
