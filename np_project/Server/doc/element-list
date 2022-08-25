@@ -1,6 +1,7 @@
 rs.ac.bg.fon.np_project.client
 rs.ac.bg.fon.np_project.client.communication
 rs.ac.bg.fon.np_project.client.controller
+rs.ac.bg.fon.np_project.client.jsonReport
 rs.ac.bg.fon.np_project.client.thread
 rs.ac.bg.fon.np_project.client.validation
 rs.ac.bg.fon.np_project.client.view

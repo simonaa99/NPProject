@@ -199,11 +199,9 @@ class UpdateUserSOTest extends AbstractSOTest {
         newUser.setUserCategory(uc);
         Mockito.doNothing().when(user).edit(oldUser, newUser);
         user.edit(oldUser, newUser);
-        if (!(oldUser.getUsercard().getCardNumber().equals(newUser.getUsercard().getCardNumber()))) {
-        	Mockito.doNothing().when(userCard).updateCardNumber(oldUser.getUsercard(), newUser.getUsercard());
-            userCard.updateCardNumber(oldUser.getUsercard(), newUser.getUsercard());
-          }
-            assertDoesNotThrow(()->updateUserSO.executeOperation(usersForUpdate));
+        Mockito.doNothing().when(userCard).updateCardNumber(oldUser.getUsercard(), newUser.getUsercard());
+        userCard.updateCardNumber(oldUser.getUsercard(), newUser.getUsercard());
+        assertDoesNotThrow(()->updateUserSO.executeOperation(usersForUpdate));
 	}
 
 	@Test

@@ -55,7 +55,6 @@ class LogOutSOTest extends AbstractSOTest {
 	void testPreconditionUsernameIsNull() {
 		Worker p = new Worker();
 		assertNull(p.getUsername(), "Nisu poslati kredencijali!");
-		//assertThrows(java.lang.Exception.class,() -> p.setUsername(null),"Nisu poslati kredencijali!" );
 	}
 	
 	@Test

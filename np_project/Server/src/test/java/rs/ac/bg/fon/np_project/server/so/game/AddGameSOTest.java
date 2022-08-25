@@ -17,7 +17,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import rs.ac.bg.fon.np_project.commonlibrary.model.Game;
 import rs.ac.bg.fon.np_project.commonlibrary.model.GameCategory;
 import rs.ac.bg.fon.np_project.commonlibrary.model.Publisher;
-import rs.ac.bg.fon.np_project.commonlibrary.model.Worker;
 import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryGame;
 import rs.ac.bg.fon.np_project.server.repository.impl.RepositoryPublisher;
 import rs.ac.bg.fon.np_project.server.so.AbstractSOTest;
@@ -29,7 +28,7 @@ class AddGameSOTest extends AbstractSOTest {
 	RepositoryGame game = new RepositoryGame();
 	
 	@Mock
-	RepositoryPublisher publisher = new RepositoryPublisher();
+	RepositoryPublisher publisher = new RepositoryPublisher(); 
 	
 	@InjectMocks
 	AddGameSO addGameSO = new AddGameSO();
@@ -76,7 +75,7 @@ class AddGameSOTest extends AbstractSOTest {
 	}
 	
 	@Test
-	void testExecuteOperationNijePraznaLista() throws Exception, IOException {
+	void testExecuteOperation() throws Exception, IOException {
 		Game g = new Game();
 		g.setGameid(1L);
 		g.setGameName("Monopol");
@@ -89,48 +88,13 @@ class AddGameSOTest extends AbstractSOTest {
         game.connect();
         Publisher p1 = new Publisher(5L, "Nikoto");
         Publisher p2 = new Publisher(10L, "Lolo");
+        
         Mockito.when(publisher.getByQuery("SELECT * FROM izdavac WHERE imePrezime='" + g.getPublisher().getPublisherName() + "'")).thenReturn(List.of(p1,p2));
-        List<Publisher> dbPublisher = publisher.getByQuery("SELECT * FROM izdavac WHERE imePrezime='" + g.getPublisher().getPublisherName() + "'");
-            if (dbPublisher.size() == 0) {
-            	Mockito.doNothing().when(publisher).add(g.getPublisher());
-                publisher.add(g.getPublisher());
-                
-            }
-            Publisher pub=publisher.getByQuery("SELECT * FROM izdavac WHERE imePrezime='" + g.getPublisher().getPublisherName() + "'").get(0);
-            g.setPublisher(pub);
-            Mockito.doNothing().when(game).add(g);
-            game.add(g);
-            
+        Mockito.doNothing().when(game).add(g);
+        assertDoesNotThrow(()->{addGameSO.executeOperation(g);});
 	}
 
-	
-	@Test
-	void testExecuteOperationListSize0() throws Exception, IOException {
-		Game g = new Game();
-		g.setGameid(1L);
-		g.setGameName("Monopol");
-		g.setNumberInStock(15);
-		g.setNumPlayers(20);
-		g.setGameCategory(GameCategory.Porodicne_igre);
-		Publisher p = new Publisher(2L, "Mirko Markovic");
-		g.setPublisher(p);
-		
-        game.connect();
-        Publisher p1 = new Publisher(5L, "Nikoto");
-        Publisher p2 = new Publisher(10L, "Lolo");
-        Publisher publ = new Publisher();
-        Mockito.when(publisher.getByQuery("SELECT * FROM izdavac WHERE imePrezime='" + g.getPublisher().getPublisherName() + "'")).thenReturn(List.of());
-        List<Publisher> dbPublisher = publisher.getByQuery("SELECT * FROM izdavac WHERE imePrezime='" + g.getPublisher().getPublisherName() + "'");
-            if (dbPublisher.size() == 0) {
-            	Mockito.doNothing().when(publisher).add(g.getPublisher());
-                publisher.add(g.getPublisher());
-                publ = g.getPublisher();
-                
-            }
-            g.setPublisher(publ);
-            Mockito.doNothing().when(game).add(g);
-            game.add(g);
-	}
+
 
 	@Test
 	void testAddGameSO() {
@@ -170,14 +134,8 @@ class AddGameSOTest extends AbstractSOTest {
 		
 		Mockito.when(game.getAll()).thenReturn(List.of(g1,g2));
 		List<Game> list = game.getAll();
-		boolean result = false;
-		for(Game igra:list) {
-			if(igra.getGameName().equals(g3.getGameName()) && igra.getPublisher().getPublisherId().equals(g3.getPublisher().getPublisherId())) {
-				result = true;
-			}
-		}
-		
-		assertEquals(true, result);
+		assertTrue(list.contains(g3));
+
 
 	}
 
@@ -212,14 +170,7 @@ class AddGameSOTest extends AbstractSOTest {
 		
 		Mockito.when(game.getAll()).thenReturn(List.of(g1,g2));
 		List<Game> list = game.getAll();
-		boolean result = false;
-		for(Game igra:list) {
-			if(igra.getGameName().equals(g3.getGameName()) && igra.getPublisher().getPublisherId().equals(g3.getPublisher().getPublisherId())) {
-				result = true;
-			}
-		}
-		
-		assertEquals(false, result);
+		assertFalse(list.contains(g3));
 
 	}
 

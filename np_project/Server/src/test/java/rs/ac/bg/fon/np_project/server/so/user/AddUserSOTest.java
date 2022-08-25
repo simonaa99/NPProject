@@ -104,7 +104,7 @@ class AddUserSOTest extends AbstractSOTest {
 		String query="SELECT * FROM clanskakarta WHERE brojClanskeKarte= '"+u.getUsercard().getCardNumber()+"'";
 		Mockito.when(userCard.getByQuery(query)).thenReturn(List.of(uCard));
 		UserCard card=userCard.getByQuery(query).get(0);
-		u.setUsercard(card);
+		u.setUsercard(card); 
 		
 		query = "SELECT * FROM kategorijaclanova WHERE naziv='" + u.getUserCategory().getName() + "'";
 		Mockito.when(userCategory.getByQuery(query)).thenReturn(List.of(uC));

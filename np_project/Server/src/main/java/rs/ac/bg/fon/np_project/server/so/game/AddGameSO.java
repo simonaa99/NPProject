@@ -86,7 +86,7 @@ public class AddGameSO extends AbstractSO {
             Publisher p=repositoryPublisher.getByQuery("SELECT * FROM izdavac WHERE imePrezime='" + game.getPublisher().getPublisherName() + "'").get(0);
             game.setPublisher(p);
             repositoryGame.add(game);
-        } catch (Exception e) {
+        } catch (Exception e) { 
             e.printStackTrace();
             throw new Exception("Greska prilikom dodavanja igre.", e);
         }
