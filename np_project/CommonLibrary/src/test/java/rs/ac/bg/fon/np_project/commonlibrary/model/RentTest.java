@@ -71,6 +71,15 @@ class RentTest {
 		r.setId(rID);
 		assertEquals(rID, r.getId());
 	}
+	
+	@ParameterizedTest
+	@CsvSource({
+		"0", "-5", "-11111"
+	})
+	void testSetIdNedozvoljen(Long rId) {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> r.setId(rId));
+	}
 
 	@Test
 	void testSetGame() {
@@ -84,6 +93,12 @@ class RentTest {
 		r.setGame(g);
 		
 		assertEquals(g,r.getGame());
+	}
+	
+	@Test
+	void testSetGameNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> r.setGame(null) );
 	}
 
 	@Test
@@ -113,6 +128,12 @@ class RentTest {
 		assertEquals(user,r.getUser());
 		
 	}
+	
+	@Test
+	void testSetUserNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> r.setUser(null) );
+	}
 
 	@Test
 	void testSetRentalDate() {
@@ -120,12 +141,38 @@ class RentTest {
 
         assertEquals(LocalDate.of(2022, 4, 4), r.getRentalDate());
 	}
+	
+	@Test
+	void testSetRentalDateNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> r.setRentalDate(null) );
+	}
 
 	@Test
 	void testSetReturnDate() {
 		r.setReturnDate(LocalDate.of(2022, 10, 5));
 
         assertEquals(LocalDate.of(2022, 10, 5), r.getReturnDate());
+	}
+	
+	@Test
+	void testSetReturnDateNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> r.setReturnDate(null) );
+	}
+	
+	@ParameterizedTest
+	@CsvSource({
+			"11, 11,true",
+			"11, 22,false"
+	})
+	void testEqualsObject(Long id1, Long id2,boolean eq) {
+		r.setId(id1);		
+		
+		Rent r2 = new Rent();
+		r2.setId(id2);
+		
+		assertEquals(eq, r.equals(r2));
 	}
 
 }

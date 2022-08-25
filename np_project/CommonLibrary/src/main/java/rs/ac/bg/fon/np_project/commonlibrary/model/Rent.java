@@ -151,22 +151,20 @@ public class Rent extends AbstractDO implements Serializable {
     
     
 
-    @Override
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((game == null) ? 0 : game.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((rentalDate == null) ? 0 : rentalDate.hashCode());
 		return result;
 	}
 
-    /**
-	 * Poredi dva iznjamljivanja po id-ju, igri i datumu iznajmljivanja
+	/**
+	 * Poredi dva iznjamljivanja po id-ju
 	 * 
 	 * @return
 	 * <ul>
-	 * <li>true - ako je id, igra i datuma iznajmljivanja isti kod oba iznajmljivanja</li>
+	 * <li>true - ako je idisti kod oba iznajmljivanja</li>
 	 * <li>false - ako to nije slucaj</li>
 	 * </ul>
 	 */
@@ -179,20 +177,10 @@ public class Rent extends AbstractDO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Rent other = (Rent) obj;
-		if (game == null) {
-			if (other.game != null)
-				return false;
-		} else if (!game.equals(other.game))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (rentalDate == null) {
-			if (other.rentalDate != null)
-				return false;
-		} else if (!rentalDate.equals(other.rentalDate))
 			return false;
 		return true;
 	}

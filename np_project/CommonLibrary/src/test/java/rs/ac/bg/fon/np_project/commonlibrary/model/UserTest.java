@@ -96,12 +96,33 @@ class UserTest {
 		u.setUserId(uID);
 		assertEquals(uID, u.getUserId());
 	}
+	
+	@ParameterizedTest
+	@CsvSource({
+		"0", "-5", "-11111"
+	})
+	void testSetUserIdNedozvoljen(Long uId) {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> u.setUserId(uId));
+	}
 
 	@Test
 	void testSetName() {
 		u.setName("Jovan");
 		
 		assertEquals("Jovan", u.getName());
+	}
+	
+	@Test
+	void testSetNamePrazanString() {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> u.setName("") );
+	}
+	
+	@Test
+	void testSetNameNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> u.setName(null) );
 	}
 
 	@Test
@@ -110,6 +131,18 @@ class UserTest {
 		
 		assertEquals("Jovanovic", u.getLastName());
 	}
+	
+	@Test
+	void testSetLastNamePrazanString() {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> u.setLastName("") );
+	}
+	
+	@Test
+	void testSetLastNameNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> u.setLastName(null) );
+	}
 
 	@Test
 	void testSetPhoneNumber() {
@@ -117,12 +150,36 @@ class UserTest {
 		
 		assertEquals("0648751489", u.getPhoneNumber());
 	}
+	
+	@Test
+	void testSetPhoneNumberPrazanString() {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> u.setPhoneNumber("") );
+	}
+	
+	@Test
+	void testSetPhoneNumberNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> u.setPhoneNumber(null) );
+	}
 
 	@Test
 	void testSetAddress() {
 		u.setAddress("Milutina Ostojica 14, 11000 Beograd");
 		
 		assertEquals("Milutina Ostojica 14, 11000 Beograd", u.getAddress());
+	}
+	
+	@Test
+	void testSetAddressPrazanString() {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> u.setAddress("") );
+	}
+	
+	@Test
+	void testSetAddressNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> u.setAddress(null) );
 	}
 
 	@Test
@@ -136,6 +193,12 @@ class UserTest {
 		
 		assertEquals(uC, u.getUserCategory());
 	}
+	
+	@Test
+	void testSetUserCategoryNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> u.setUserCategory(null) );
+	}
 
 	@Test
 	void testSetUsercard() {
@@ -148,6 +211,36 @@ class UserTest {
 		u.setUsercard(userCard);
 		
 		assertEquals(userCard, u.getUsercard());
+	}
+	
+	@Test
+	void testSetUsercardNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> u.setUsercard(null) );
+	}
+	
+	@ParameterizedTest
+	@CsvSource({
+			"1234, 1234, Mina, Mina, Peric, Peric, true",
+			"1234, 1234, Mina, Mina, Peric, Maric, false",
+			"1234, 1234, Mina, Nina, Peric, Peric, false",
+			"1234, 4321, Mina, Mina, Peric, Peric, false",
+			"1234, 4321, Mina, Nina, Peric, Peric, false",
+			"1234, 4321, Mina, Mina, Peric, Maric, false",
+			"1234, 1234, Mina, Nina, Peric, Maric, false",
+			"1234, 4321, Mina, Nina, Peric, Maric, false",
+	})
+	void testEqualsObject(Long id1, Long id2, String ime1, String ime2, String prezime1, String prezime2, boolean eq) {
+		u.setUserId(id1);
+		u.setName(ime1);
+		u.setLastName(prezime1);
+		
+		User u2 = new User();
+		u2.setUserId(id2);
+		u2.setName(ime2);
+		u2.setLastName(prezime2);
+		
+		assertEquals(eq, u.equals(u2));
 	}
 
 }

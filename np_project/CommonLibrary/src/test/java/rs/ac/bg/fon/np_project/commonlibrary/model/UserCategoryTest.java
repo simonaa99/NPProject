@@ -28,12 +28,33 @@ class UserCategoryTest {
 		uC.setUserCategoryId(uCID);
 		assertEquals(uCID, uC.getUserCategoryId());
 	}
+	
+	@ParameterizedTest
+	@CsvSource({
+		"0", "-5", "-11111"
+	})
+	void testSetUserCategoryIdNedozvoljen(Long uCId) {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> uC.setUserCategoryId(uCId));
+	}
 
 	@Test
 	void testSetName() {
 		uC.setName("Takmicar");
 		
 		assertEquals("Takmicar", uC.getName());
+	}
+	
+	@Test
+	void testSetNamePrazanString() {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> uC.setName("") );
+	}
+	
+	@Test
+	void testSetNameNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> uC.setName(null) );
 	}
 
 	@Test
@@ -42,6 +63,16 @@ class UserCategoryTest {
 		
 		assertEquals(55.5, uC.getMembershipFeeDiscount());
 	}
+	
+	@ParameterizedTest
+	@CsvSource({
+		"0.0", "-5.5", "-11111.11"
+	})
+	void testSetMembershipFeeDiscountNedozvoljen(double md) {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> uC.setMembershipFeeDiscount(md));
+	}
+	
 
 	@Test
 	void testToString() {
@@ -52,4 +83,21 @@ class UserCategoryTest {
 		assertTrue(s.contains("Sampion"));
 	}
 
+	@ParameterizedTest
+	@CsvSource({
+			"1234, 1234, Takmicar, Takmicar, true",
+			"1234, 1234, Takmicar, Pobednik, false",
+			"1234, 4321, Takmicar, Takmicar, false",
+			"1234, 4321, Takmicar, Pobednik, false"
+	})
+	void testEqualsObject(Long id1, Long id2, String ime1, String ime2, boolean eq) {
+		uC.setUserCategoryId(id1);
+		uC.setName(ime1);
+		
+		UserCategory uC2 = new UserCategory();
+		uC2.setUserCategoryId(id2);
+		uC2.setName(ime2);
+		
+		assertEquals(eq, uC.equals(uC2));
+	}
 }

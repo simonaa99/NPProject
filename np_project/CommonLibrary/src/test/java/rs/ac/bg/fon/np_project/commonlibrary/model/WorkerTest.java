@@ -67,11 +67,35 @@ class WorkerTest {
 		w.setFirstName("Helena");
 		assertEquals("Helena",w.getFirstName());
 	}
+	
+	@Test
+	void testSetFirstNamePrazanString() {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> w.setFirstName("") );
+	}
+	
+	@Test
+	void testSetFirstNameNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> w.setFirstName(null) );
+	}
 
 	@Test
 	void testSetLastName() {
 		w.setLastName("Makovic");
 		assertEquals("Makovic",w.getLastName());
+	}
+	
+	@Test
+	void testSetLastNamePrazanString() {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> w.setLastName("") );
+	}
+	
+	@Test
+	void testSetLastNameNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> w.setLastName(null) );
 	}
 
 	@Test
@@ -89,17 +113,74 @@ class WorkerTest {
 		w.setId(wID);
 		assertEquals(wID, w.getId());
 	}
+	
+	@ParameterizedTest
+	@CsvSource({
+		"0", "-5", "-11111"
+	})
+	void testSetIdNedozvoljen(Long wId) {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> w.setId(wId));
+	}
 
 	@Test
 	void testSetUsername() {
 		w.setUsername("tanja");
 		assertEquals("tanja",w.getUsername());
 	}
+	
+	@Test
+	void testSetUsernamePrazanString() {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> w.setUsername("") );
+	}
+	
+	@Test
+	void testSetUsernameNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> w.setUsername(null) );
+	}
 
 	@Test
 	void testSetPassword() {
 		w.setUsername("m1456");
 		assertEquals("m1456",w.getUsername());
+	}
+	
+	@Test
+	void testSetPasswordPrazanString() {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> w.setPassword("") );
+	}
+	
+	@Test
+	void testSetPasswordNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> w.setPassword(null) );
+	}
+	
+	@ParameterizedTest
+	@CsvSource({
+			"1234, 1234, Mina, Mina, Peric, Peric, true",
+			"1234, 1234, Mina, Mina, Peric, Maric, false",
+			"1234, 1234, Mina, Nina, Peric, Peric, false",
+			"1234, 4321, Mina, Mina, Peric, Peric, false",
+			"1234, 4321, Mina, Nina, Peric, Peric, false",
+			"1234, 4321, Mina, Mina, Peric, Maric, false",
+			"1234, 1234, Mina, Nina, Peric, Maric, false",
+			"1234, 4321, Mina, Nina, Peric, Maric, false",
+	})
+	void testEqualsObject(Long id1, Long id2, String ime1, String ime2, String prezime1, String prezime2, boolean eq) {
+		w.setId(id1);
+		w.setFirstName(ime1);
+		w.setLastName(prezime1);
+		
+		Worker w2 = new Worker();
+		w2.setId(id2);
+		w2.setFirstName(ime2);
+		w2.setLastName(prezime2);
+		
+		assertEquals(eq, w.equals(w2));
 	}
 
 }

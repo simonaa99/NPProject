@@ -62,11 +62,32 @@ class UserCardTest {
 		uC.setId(uCID);
 		assertEquals(uCID, uC.getId());
 	}
+	
+	@ParameterizedTest
+	@CsvSource({
+		"0", "-5", "-11111"
+	})
+	void testSetIdNedozvoljen(Long uCId) {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> uC.setId(uCId));
+	}
 
 	@Test
 	void testSetCardNumber() {
 		uC.setCardNumber("259874163987");
 		assertEquals("259874163987", uC.getCardNumber());
+	}
+	
+	@Test
+	void testSetCardNumberPrazanString() {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> uC.setCardNumber("") );
+	}
+	
+	@Test
+	void testSetCardNumberNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> uC.setCardNumber(null) );
 	}
 
 	@Test
@@ -75,12 +96,24 @@ class UserCardTest {
 
         assertEquals(LocalDate.of(2022, 4, 4), uC.getIssueDate());
 	}
+	
+	@Test
+	void testSetIssueDateNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> uC.setIssueDate(null) );
+	}
 
 	@Test
 	void testSetExpiryDate() {
 		uC.setExpiryDate(LocalDate.of(2022, 8, 4));
 
         assertEquals(LocalDate.of(2022, 8, 4), uC.getExpiryDate());
+	}
+	
+	@Test
+	void testSetExpiryDateNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> uC.setExpiryDate(null) );
 	}
 
 	@Test
@@ -92,4 +125,21 @@ class UserCardTest {
 		assertTrue(s.contains("587412369874"));
 	}
 
+	@ParameterizedTest
+	@CsvSource({
+			"11, 11, 123456, 123456, true",
+			"11, 22, 123456, 123456, false",
+			"11, 11, 123456, 654321, false",
+			"11, 22, 123456, 654321, false"
+	})
+	void testEqualsObject(Long id1, Long id2, String brojKart1, String brojKart2, boolean eq) {
+		uC.setId(id1);
+		uC.setCardNumber(brojKart1);
+		
+		UserCard uC2 = new UserCard();
+		uC2.setId(id2);
+		uC2.setCardNumber(brojKart2);
+		
+		assertEquals(eq, uC.equals(uC2));
+	}
 }

@@ -63,11 +63,32 @@ class PublisherTest {
 		p.setPublisherId(pID);
 		assertEquals(pID, p.getPublisherId());
 	}
+	
+	@ParameterizedTest
+	@CsvSource({
+		"0", "-5", "-11111"
+	})
+	void testSetPublisheridNedozvoljen(Long pId) {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> p.setPublisherId(pId));
+	}
 
 	@Test
 	void testSetPublisherName() {
 		p.setPublisherName("Log");
 		assertEquals("Log", p.getPublisherName());
+	}
+	
+	@Test
+	void testSetPublisherNamePrazanString() {
+		assertThrows(java.lang.IllegalArgumentException.class,
+				() -> p.setPublisherName("") );
+	}
+	
+	@Test
+	void testSetPublisherNameNull() {
+		assertThrows(java.lang.NullPointerException.class,
+				() -> p.setPublisherName(null) );
 	}
 
 	@Test
@@ -77,6 +98,20 @@ class PublisherTest {
 		String s = p.toString();
 
 		assertTrue(s.contains("Kira"));
+	}
+	
+	@ParameterizedTest
+	@CsvSource({
+			"11, 11, true",
+			"11, 22, false"
+	})
+	void testEqualsObject(Long id1, Long id2, boolean eq) {
+		p.setPublisherId(id1);
+		
+		Publisher p2 = new Publisher();
+		p2.setPublisherId(id2);
+		
+		assertEquals(eq, p.equals(p2));
 	}
 
 }

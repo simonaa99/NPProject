@@ -179,24 +179,22 @@ public class Game extends AbstractDO implements Serializable {
         this.numberInStock = numberInStock;
     }
 
-    
-    
-    @Override
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((gameName == null) ? 0 : gameName.hashCode());
 		result = prime * result + ((gameid == null) ? 0 : gameid.hashCode());
-		result = prime * result + ((publisher == null) ? 0 : publisher.hashCode());
 		return result;
 	}
 
-    /**
-	 * Poredi dve igre po id-ju, nazivu i izdavacu
+	/**
+	 * Poredi dve igre po id-ju i nazivu
 	 * 
 	 * @return
 	 * <ul>
-	 * <li>true - ako je id, naziv i izdavac isti kod obe igre</li>
+	 * <li>true - ako je id i naziv isti kod obe igre</li>
 	 * <li>false - ako to nije slucaj</li>
 	 * </ul>
 	 */
@@ -218,11 +216,6 @@ public class Game extends AbstractDO implements Serializable {
 			if (other.gameid != null)
 				return false;
 		} else if (!gameid.equals(other.gameid))
-			return false;
-		if (publisher == null) {
-			if (other.publisher != null)
-				return false;
-		} else if (!publisher.equals(other.publisher))
 			return false;
 		return true;
 	}
