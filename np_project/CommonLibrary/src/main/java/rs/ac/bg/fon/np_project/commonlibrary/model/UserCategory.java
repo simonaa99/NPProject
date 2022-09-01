@@ -96,8 +96,6 @@ public class UserCategory implements Serializable{
      * @throws java.lang.IllegalArgumentException ako je uneti vrednost popusta nula ili manji od nule
 	 */
     public void setMembershipFeeDiscount(Double membershipFeeDiscount) {
-    	if (membershipFeeDiscount <= 0)
-			throw new IllegalArgumentException("Vrednost popusta mora bii veci od nule");
         this.membershipFeeDiscount = membershipFeeDiscount;
     }
 

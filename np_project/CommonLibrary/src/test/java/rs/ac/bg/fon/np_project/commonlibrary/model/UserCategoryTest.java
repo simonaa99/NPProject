@@ -64,15 +64,6 @@ class UserCategoryTest {
 		assertEquals(55.5, uC.getMembershipFeeDiscount());
 	}
 	
-	@ParameterizedTest
-	@CsvSource({
-		"0.0", "-5.5", "-11111.11"
-	})
-	void testSetMembershipFeeDiscountNedozvoljen(double md) {
-		assertThrows(java.lang.IllegalArgumentException.class,
-				() -> uC.setMembershipFeeDiscount(md));
-	}
-	
 
 	@Test
 	void testToString() {
